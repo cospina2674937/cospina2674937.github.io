@@ -250,6 +250,183 @@ header {
         right: 10px;
       }
     }
+/* ----- SECCIÓN TÉRMINOS CON SCROLL ----- */
+.terms-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+  font-size: 15px;
+  color: #333;
+  max-width: 900px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  grid-column: 1 / -1;
+}
+
+.terms-title {
+  color: #0013ea;
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Scroll activo desde el inicio (no depende del tamaño de pantalla) */
+.terms-scroll {
+  max-height: 150px; /* controla la altura visible */
+  overflow-y: scroll; /* fuerza el scroll siempre que haya texto */
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+  scroll-behavior: smooth;
+}
+
+/* Barra de scroll personalizada */
+.terms-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.terms-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+.terms-scroll::-webkit-scrollbar-thumb {
+  background: #0013ea;
+  border-radius: 8px;
+}
+.terms-scroll::-webkit-scrollbar-thumb:hover {
+  background: #5564eb;
+}
+
+/* Checkbox */
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #0013ea;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.checkbox-container label {
+  line-height: 1.4;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .terms-container {
+    padding: 15px;
+    font-size: 14px;
+  }
+  .terms-title {
+    font-size: 16px;
+  }
+  .terms-scroll {
+    max-height: 140px;
+  }
+  .checkbox-container label {
+    font-size: 14px;
+  }
+}
+
+.payment-section {
+  background-color: #e8f0ff; /* azul muy claro */
+  border: 1px solid #ccd4ff; /* borde sutil */
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  grid-column: 1 / -1; /* ocupa el ancho completo del formulario */
+  box-shadow: 0 2px 8px rgba(0, 19, 234, 0.08);
+  margin-top: 15px;
+}
+
+.payment-section h3 {
+  color: #0013ea;
+  margin-bottom: 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.payment-section p {
+  color: #333;
+  margin: 5px 0;
+}
+
+.upload-box {
+  margin-top: 15px;
+  border: 1px dashed #5564eb;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  text-align: left;
+}
+
+.upload-box label {
+  font-weight: 600;
+  color: #0013ea;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.upload-box input[type="file"] {
+  border: none;
+  background: #f0f2ff;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.upload-box small {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #444;
+}
+
+.payment-note {
+  margin-top: 20px;
+  background-color: #f9fbff;
+  border-left: 4px solid #5564eb;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .payment-section {
+    padding: 15px;
+    font-size: 14px;
+  }
+  .payment-section h3 {
+    font-size: 18px;
+  }
+}
+
+
+
+
+
+   
+
+
+
+
+
+    
   </style>
 </head>
 <body>
@@ -277,7 +454,8 @@ header {
   <!-- FORMULARIO -->
   <div class="form-container">
     <h2>Formulario de Inscripción</h2>
-    <form action="guardar.php" method="post">
+   <!--  <form action="guardar.php" method="post">-->
+      <form action="procesar_formulario.php" method="POST">
 
       <div class="input-icon">
         <label>Nombre</label>
@@ -315,6 +493,7 @@ header {
         <input type="email" name="correo" required>
       </div>
 
+      <!--
       <div class="input-icon">
         <label>Categoría</label>
         <i class="fa-solid fa-medal"></i>
@@ -324,13 +503,91 @@ header {
           <option value="juvenil">Juvenil</option>
           <option value="recreativa">Recreativa</option>
         </select>
-      </div>
+      </div>-->
 
+       <div class="input-icon">
+        <label>País</label>
+        <i class="fa-solid fa-city"></i>
+        <input type="text" name="pais" required>
+      </div>
       <div class="input-icon">
         <label>Ciudad</label>
         <i class="fa-solid fa-city"></i>
         <input type="text" name="ciudad" required>
       </div>
+
+       <div class="input-icon">
+        <label>Direccion</label>
+        <i class="fa-solid fa-city"></i>
+        <input type="text" name="direccion" required>
+      </div>
+
+       <!-- NUEVO CAMPO: Tipo de Sangre -->
+  <div class="input-icon">
+    <label>Tipo de sangre:</label>
+    <i class="fa-solid fa-droplet"></i>
+    <select id="tipo_sangre" name="tipo_sangre" required>
+      <option value="">Seleccione</option>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+    </select>
+  </div>
+
+  <!-- NUEVO CAMPO: Contacto de emergencia -->
+  <div class="input-icon">
+    <label>Nombre de contacto de emergencia:</label>
+     <i class="fa-solid fa-user"></i>
+    <input type="text" name="contacto_nombre" required>
+  </div>
+
+  <div class="input-icon">
+    <label>Teléfono de contacto de emergencia:</label>
+     <i class="fa-solid fa-phone"></i>
+    <input type="tel"  name="contacto_telefono" required>
+  </div>
+ <div class="payment-section">
+  <h3><i class="fas fa-credit-card"></i> Información de Pago</h3>
+  <p><strong>Valor de inscripción:</strong> $25.000 COP</p>
+  <p><strong>Cuenta de ahorro Bancolombia:</strong> 86492477312</p>
+  <p><strong>Cuenta Nequi:</strong> 3108554382</p>
+
+  <div class="upload-box">
+    <label for="comprobante"><i class="fas fa-upload"></i> Subir comprobante de pago:</label>
+    <input type="file" id="comprobante" name="comprobante" accept=".jpg, .png, .pdf" required>
+    <small>Formatos permitidos: JPG, PNG o PDF — Tamaño máximo 5MB</small>
+  </div>
+
+  <div class="payment-note">
+    <p>📸 Envía tu comprobante de pago al número de WhatsApp 3104263982  o súbelo aquí para validar tu inscripción.</p>
+  </div>
+</div>
+
+
+<!-- ----- TÉRMINOS Y CONDICIONES CON SCROLL ----- -->
+<div class="terms-container" style="grid-column: 1 / -1;">
+  <h3 class="terms-title">Términos y Condiciones</h3>
+  <div class="terms-scroll">
+    <p>Declaro que de forma voluntaria he decidido participar en el evento <strong>MTB de Pradera Pa’ El Mundo 31 KM</strong>, que se llevará a cabo en la fecha y recorrido que la organización determine. Afirmo que me encuentro en perfectas condiciones físicas, mentales y de salud, y que he realizado los exámenes médicos que considere necesarios para participar.</p>
+    <p>Entiendo que debo acatar las indicaciones de la organización, de los árbitros, y cumplir los protocolos de seguridad vigentes. Reconozco que la organización podrá retirarme del evento si no cumplo con los puntos de control, tiempos establecidos o normas de seguridad.</p>
+    <p>Asumo todos los riesgos derivados de la participación en este evento deportivo, incluyendo pero no limitado a: caídas, accidentes, enfermedades, condiciones climáticas, tránsito vehicular, vías públicas, robo o hurto de mis pertenencias. Libero a la organización, sus patrocinadores, autoridades locales y cualquier entidad vinculada al evento de toda responsabilidad por daños, pérdidas o reclamaciones.</p>
+    <p>He leído detenidamente el reglamento del evento y acepto que la inscripción no es reembolsable. En caso de no poder participar, la organización podrá permitir el envío del kit a domicilio (gastos asumidos por el participante) o el traspaso del cupo a otra persona según políticas vigentes.</p>
+    <p>Al marcar la casilla “Acepto” estoy manifiestamente aceptando estos términos y condiciones.</p>
+  </div>
+  <div class="checkbox-container">
+    <input type="checkbox" id="terminos" name="terminos" required>
+    <br>
+    <label for="terminos">He leído y acepto los términos y condiciones del evento.</label>
+  </div>
+</div>
+
+
+
 
     
 
